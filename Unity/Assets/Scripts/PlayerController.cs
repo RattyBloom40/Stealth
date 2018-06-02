@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 
 	void Start() {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		if(instance == null)
 			instance = this;
 		else {
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		Vector3 input = Vector3.forward * Input.GetAxis( "Vertical" ) + Vector3.right * Input.GetAxis( "Horizontal" );
+		Vector3 input = transform.forward * Input.GetAxis( "Vertical" ) + transform.right * Input.GetAxis( "Horizontal" );
 		anim.SetFloat( "x input", Input.GetAxis( "Horizontal" ) );
 		anim.SetFloat( "z input", Input.GetAxis( "Vertical" ) );
 		rb.velocity = input * speed;
